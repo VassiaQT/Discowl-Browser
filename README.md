@@ -61,29 +61,6 @@ discowl-browser/
 └── packaging/                 # Distribution scripts
 ```
 
-## Development
-
-### Key Concepts
-
-1. **Servo is an engine, not a browser** - You provide the window, tabs, UI, history, etc.
-2. **UI is a WebView** - The toolbar, sidebar, and internal pages are HTML loaded in WebViews
-3. **One-way data flow** - UI sends commands → Core updates state → Core sends events → UI re-renders
-4. **Only `engine` knows Servo types** - Browser-core works with your own types
-
-### Adding Features
-
-1. Add types to `ipc` crate
-2. Implement logic in `browser-core`
-3. Wire up in `engine` delegate
-4. Update UI in `ui/toolbar/` or `ui/sidebar/`
-
-## Configuration
-
-Settings are stored in the platform-appropriate config directory:
-- Linux: `~/.config/discowl-browser/`
-- macOS: `~/Library/Application Support/discowl-browser/`
-- Windows: `%APPDATA%\discowl-browser\`
-
 ## License
 
 MPL-2.0
