@@ -1,0 +1,28 @@
+[package]
+name = "discowl-app"
+version = { workspace = true }
+edition = { workspace = true }
+license = { workspace = true }
+rust-version = { workspace = true }
+
+[[bin]]
+name = "discowl"
+path = "src/main.rs"
+
+[dependencies]
+winit = { workspace = true }
+raw-window-handle = { workspace = true }
+discowl-engine = { path = "../engine" }
+discowl-browser-core = { path = "../browser-core" }
+discowl-ipc = { path = "../ipc" }
+discowl-storage = { path = "../storage" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+parking_lot = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+euclid = { version = "0.22", features = ["serde"] }
+uuid = { workspace = true }
+surfman = { version = "0.14", features = ["sm-angle"] }

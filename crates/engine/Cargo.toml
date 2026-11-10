@@ -1,0 +1,23 @@
+[package]
+name = "discowl-engine"
+version = { workspace = true }
+edition = { workspace = true }
+license = { workspace = true }
+rust-version = { workspace = true }
+
+[dependencies]
+servo = { workspace = true }
+winit = { workspace = true }
+raw-window-handle = { workspace = true }
+discowl-ipc = { path = "../ipc" }
+discowl-browser-core = { path = "../browser-core" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+parking_lot = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+uuid = { workspace = true }
+euclid = { workspace = true }
+url = { workspace = true }
+webrender_api = { version = "0.70", features = [] }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            text-align: center;
+        }
+        .error-icon { font-size: 64px; margin-bottom: 16px; }
+        h1 { font-size: 24px; font-weight: 400; color: #202124; margin-bottom: 8px; }
+        .error-code { font-size: 14px; color: #5f6368; margin-bottom: 24px; }
+        p { font-size: 14px; color: #3c4043; margin-bottom: 24px; max-width: 500px; line-height: 1.5; }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            background: #1a73e8;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .button:hover { background: #1557b0; }
+        .button.secondary { background: #fff; color: #1a73e8; border: 1px solid #dadce0; }
+        .button.secondary:hover { background: #f8f9fa; }
+        .buttons { display: flex; gap: 12px; }
+    </style>
+</head>
+<body>
+    <div class="error-icon">⚠️</div>
+    <h1 id="error-title">Unable to Load Page</h1>
+    <div class="error-code" id="error-code"></div>
+    <p id="error-message">The webpage at <strong id="error-url"></strong> could not be loaded.</p>
+    <div class="buttons">
+        <a class="button" id="retry-btn" href="#">Try Again</a>
+        <a class="button secondary" id="home-btn" href="https://duckduckgo.com">Go to Homepage</a>
+    </div>
+    
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const errorCode = params.get('code') || 'UNKNOWN';
+        const errorUrl = params.get('url') || '';
+        const errorMsg = params.get('msg') || '';
+        
+        document.getElementById('error-code').textContent = `Error: ${errorCode}`;
+        document.getElementById('error-url').textContent = errorUrl || 'this address';
+        document.getElementById('error-message').innerHTML = errorMsg || `The webpage at <strong>${escapeHtml(errorUrl)}</strong> could not be loaded.`;
+        document.getElementById('retry-btn').href = errorUrl;
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
